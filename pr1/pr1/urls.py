@@ -22,4 +22,5 @@ urlpatterns = [
     path("countries/", views.ListCountries.as_view(), name="countries"),
     path("states/", views.ListState.as_view(), name="states"),
     path("city/", views.ListCity.as_view(), name="city"),
+    path("filterstates/",views.FilterState.as_view(),name='filterstates'),
 ]

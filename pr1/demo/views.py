@@ -1,5 +1,6 @@
 
 from calendar import c
+from multiprocessing import Value
 from re import T
 from turtle import home
 from django.http import JsonResponse
@@ -12,21 +13,13 @@ import json
 # import requests
 import urllib.request, json 
 class Home(View):
-    list=[]
-    def name(self,data):
-        print(data)
-        self.data1=data
 
-        for i in self.data1:
-            list.append(i.name)
-  
     def get(self,request):
-        
-        # url='http://127.0.0.1:8000/static/json/states.json'
-        # with urllib.request.urlopen(f"{url}") as url:
-        #     data = json.loads(url.read().decode())
-        #     print(data)
-        return render(request,'demo.html')
+            url='http://127.0.0.1:8000/static/json/countries.json/'
+            with urllib.request.urlopen(f"{url}") as url:
+             data = json.loads(url.read().decode())
+            # print(type(data[0]))
+            return render(request,'demo.html',{'data':data})
 
 
 class ListCountries(View):
@@ -42,7 +35,7 @@ class ListState(View):
         url='http://127.0.0.1:8000/static/json/states.json/'
         with urllib.request.urlopen(f"{url}") as url:
             data = json.loads(url.read().decode())
-            print(data)
+            
         return JsonResponse(data=data,safe=False)
 
 class ListCity(View):
@@ -52,4 +45,26 @@ class ListCity(View):
             data = json.loads(url.read().decode())
            
         return JsonResponse(data=data,safe=False)
+
+class FilterState(View):
+     def get(self, request):
+        country=request.GET['country']
+        print(country)
+        return render(request,'demo.html')
+        # state=[]
+        # url='http://127.0.0.1:8000/static/json/states.json/'
+        # with urllib.request.urlopen(f"{url}") as url:
+        #     data = json.loads(url.read().decode())
+        #     countryname=json.loads(country)
+        #     for i in data:
+        #         if countryname == i['country_name']:
+                    
+               
+                    
+                    
+
+
+                    
+
+
 
