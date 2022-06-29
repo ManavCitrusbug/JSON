@@ -18,9 +18,9 @@ from django.urls import path
 from demo import views
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('home/',views.Home.as_view(),name='home'),
+    path('country/',views.Country.as_view(),name='country'),
     path("countries/", views.ListCountries.as_view(), name="countries"),
     path("states/", views.ListState.as_view(), name="states"),
     path("city/", views.ListCity.as_view(), name="city"),
-    path("filterstates/",views.FilterState.as_view(),name='filterstates'),
+
 ]

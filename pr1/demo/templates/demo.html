@@ -12,45 +12,52 @@
     <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
     
   </head>
-  <body>
+  <body style="background-image: url('{%static 'img/hh.jpg'%}');  background-repeat: no-repeat ;  background-size: cover;">
    
-    <div class='container text-center' style="width:50%; height: 250px; border: 2px black solid; margin-top: 50px; box-shadow: 1px 20px 40px 20px grey;">
+    <div id="div1"class='container text-center' style="background-color:white;width:50%; height: 250px; border: 4px black solid; margin-top: 50px; box-shadow: 1px 20px 40px 20px grey; ">
       
-    <select class="mt-4 form-control w-50 m-auto text-center" id='countries'name='countries'>
-      {%for datas in data%}
-        <option >{{datas.name}}</option>
-      {%endfor %}
+    <select class="mt-4 form-control w-50 m-auto text-center" id='countries'name='countries' onchange="get_country()"  >
+
+      
+        <option ></option>
+
     </select>
-    <select class="mt-3 form-control w-50 m-auto text-center">
+   
+    <p id='country'></p>
+
+    <select class="mt-3 form-control w-50 m-auto text-center" id='states' onchange="get_city()" >
       <option>Select State</option>
 
     </select>
-    <select class="mt-3 form-control w-50 m-auto text-center">
+   
+    <select class="mt-3 form-control w-50 m-auto text-center" id='city'>
       <option>Select City</option>
 
     </select>
-    <button type="button" class="btn btn-success mt-3">Save</button>
+   
+    <button type="button" class="btn btn-success mt-3" onclick='show_data()'>Save</button>
   </div><br><br><br>
   <div class="container">
-  <h2>All Data</h2>
+  <h2 style='color:black;'>All Data</h2>
   <br>          
-  <table class="table table-striped">
+  <table class="table ">
     <thead>
       <tr>
-        <th class="text-center">Country</th>
-        <th class="text-center">State</th>
-        <th class="text-center">City</th>
+        <th class="text-center" style='color:black;'>Country</th>
+        <th class="text-center" style='color:black;'>State</th>
+        <th class="text-center" style='color:black;'>City</th>
       </tr>
     </thead>
     <tbody>
       <tr>
-        <td class="text-center">John</td>
-        <td class="text-center">Doe</td>
-        <td class="text-center">john@example.com</td>
+        <td class="text-center  table-secondary" id='countrydata' style='color:black;'></td>
+        <td class="text-center  table-secondary" id='statedata' style='color:black;'></td>
+        <td class="text-center  table-secondary" id='citydata' style='color:black;'></td>
       </tr>
       
     </tbody>
   </table>
+  
 </div>
 <script defer type="text/javascript" src='{% static "json/jquery-3.6.0.min.js" %}'></script>
 <script defer type="text/javascript" src='{% static "json/demo.js" %}'></script>
