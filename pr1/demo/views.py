@@ -31,7 +31,7 @@ class ListCountries(View):
 class ListState(View):
     def get(self, request):
         data1=[]
-        val=0
+        val='no state'
         country=request.GET['country']
     
         url='http://127.0.0.1:8000/static/json/states.json/'
@@ -41,8 +41,8 @@ class ListState(View):
                if i['country_name']==country:
                     data1.append(i['name'])
         return JsonResponse({"data1":data1})
-        # else:
-        #     return JsonResponse({"val":val})
+      
+     
 
 class ListCity(View):
     def get(self, request):

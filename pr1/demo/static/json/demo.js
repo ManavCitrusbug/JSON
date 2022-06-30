@@ -23,12 +23,11 @@ function get_country() {
         type: 'GET',
         data: { 'country': country },
         success: function (response) {
-
+            console.log(response.data1);
             var val;
             var i;
-            console.log(response);
-       
-
+            if (response.data1.length > 0) {
+                console.log("resposne");
                 $('#states').html("");
                 $('#city').html("");
                 for (var key in response) {
@@ -37,11 +36,14 @@ function get_country() {
                         $('#states').append(`<option >${val[i]}</option>`);
                     }
                 }
-            // }
-            // else {
-            //     $('#states').append("<option >" + 'No states are available' + "</option>");
+            }
+            else {
+                console.log("resposne not foun");
+                $('#states').html("")
+                $('#states').append(`<option >No state</option>`);
 
-            // }
+
+            }
         },
 
     });
@@ -56,9 +58,10 @@ function get_city() {
         type: 'GET',
         data: { 'states': states },
         success: function (response) {
-            // if (response.length > 0) {
-                var val;
-                var i;
+            
+            var val;
+            var i;
+            if (response.data1.length > 0) {
                 $('#city').html("");
                 for (var key in response) {
                     val = response[key];
@@ -67,10 +70,11 @@ function get_city() {
                         $('#city').append(`<option >${val[i]}</option>`);
                     }
                 }
-      
-            // else {
-            //     $('#city').append("<option >" + "No city are available" + "</option>");
-            // }
+            }
+
+            else {
+                $('#city').append("<option >" + "No city are available" + "</option>");
+            }
         },
 
     });
@@ -82,7 +86,7 @@ function show_data() {
     var city = $('#city').val();
 
 
-    if (state == 'No states are available' || city == 'No city are available') {
+    if (state == 'No state' || city == 'Select City') {
         $("#div1").css({
             "border-color": "red",
             "border-weight": "4px",
@@ -105,6 +109,9 @@ function show_data() {
         $('#countrydata').html(country);
         $('#statedata').html(state);
         $('#citydata').html(city);
+        $('#statedata').css("color", "black");
+        $('#statedata').css("color", "black");
+        $('#citydata').css("color", 'black');
 
 
     }
