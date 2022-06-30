@@ -31,7 +31,7 @@ class ListCountries(View):
 class ListState(View):
     def get(self, request):
         data1=[]
-        val='no state'
+       
         country=request.GET['country']
     
         url='http://127.0.0.1:8000/static/json/states.json/'

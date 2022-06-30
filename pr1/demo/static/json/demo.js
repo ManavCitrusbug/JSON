@@ -23,9 +23,10 @@ function get_country() {
         type: 'GET',
         data: { 'country': country },
         success: function (response) {
-            console.log(response.data1);
+            
             var val;
             var i;
+            
             if (response.data1.length > 0) {
                 console.log("resposne");
                 $('#states').html("");
@@ -73,7 +74,7 @@ function get_city() {
             }
 
             else {
-                $('#city').append("<option >" + "No city are available" + "</option>");
+                $('#city').append("<option >" + "No city" + "</option>");
             }
         },
 
@@ -86,17 +87,19 @@ function show_data() {
     var city = $('#city').val();
 
 
-    if (state == 'No state' || city == 'Select City') {
+    if (state == 'No state'|| city == 'Select City' || city == null) {
         $("#div1").css({
             "border-color": "red",
             "border-weight": "4px",
             "border-style": "solid"
         });
-        $('#countrydata').html(country);
+        $('#countrydata').html("Empty");
         $('#statedata').html("Empty");
         $('#citydata').html("Empty");
+        $('#countrydata').css("color", "red");
         $('#statedata').css("color", "red");
         $('#citydata').css("color", 'red');
+        
 
     }
     else {
@@ -109,7 +112,7 @@ function show_data() {
         $('#countrydata').html(country);
         $('#statedata').html(state);
         $('#citydata').html(city);
-        $('#statedata').css("color", "black");
+        $('#countrydata').css("color", "black");
         $('#statedata').css("color", "black");
         $('#citydata').css("color", 'black');
 
